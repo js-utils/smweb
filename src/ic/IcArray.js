@@ -160,6 +160,18 @@ class IcArray extends Array {
     }
     return this
   }
+  first () {
+    if (this.length) {
+      return new IcArray(this[0])
+    }
+    return this
+  }
+  last () {
+    if (this.length) {
+      return new IcArray(this[this.length - 1])
+    }
+    return this
+  }
   ////////////////////////////////////////////////////////////////////
   //    类操作相关
   ////////////////////////////////////////////////////////////////////

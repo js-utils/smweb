@@ -55,6 +55,9 @@ $ic('li:last-child').siblingsNextAll()
 $ic('li').filter('.active')
 ```
 
+> first() // 第一个元素
+> last() // 最后一个元素
+
 > addClass(className) removeClass(className) toggleClass(className) replaceClass(removeClassName, addClassName)
 ```javascript
 $ic('li').toggleClass('active')
