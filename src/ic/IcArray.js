@@ -26,7 +26,8 @@ class IcArray extends Array {
     return this
   }
   _uniq () {
-    return this.filter((value, index, self) => {
+    // 调用Array原生filter方法
+    return super.filter((value, index, self) => {
       return self.indexOf(value) === index
     })
   }
@@ -144,6 +145,52 @@ class IcArray extends Array {
       }
     })
     return icArray._uniq()
+  }
+  // 过滤已选元素
+  filter (expr) {
+    if (expr) {
+      let icArray = new IcArray()
+      this.forEach(element => {
+        let exprElementSiblings = new IcArray(element).siblings(expr)
+        if (exprElementSiblings.indexOf(element) !== -1) {
+          icArray.push(element)
+        }
+      })
+      return icArray
+    }
+    return this
+  }
+  ////////////////////////////////////////////////////////////////////
+  //    类操作相关
+  ////////////////////////////////////////////////////////////////////
+  _operateClass (op, className, cb) {
+    let classNames = className instanceof(Array) ? className : className.split(' ')
+    this.forEach((element) => {
+      classNames.forEach((classItem) => {
+        let value = element['classList'][op](classItem)
+        cb && cb(value)
+      })
+    })
+  }
+  // 添加类
+  addClass (className) {
+    this._operateClass('add', className)
+  }
+  // 删除类
+  removeClass (className) {
+    this._operateClass('remove', className)
+  }
+  // 翻转类
+  toggleClass (className) {
+    this._operateClass('toggle', className)
+  }
+  // 替换类
+  replaceClass (beforeClassName, afterClassName) {
+    let icArray = this.filter(`.${beforeClassName}`)
+    console.log(this, icArray, `.${beforeClassName}`)
+    icArray._operateClass('remove', beforeClassName)
+    icArray._operateClass('add', afterClassName)
+    return icArray
   }
 }
 module.exports = IcArray

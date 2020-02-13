@@ -49,3 +49,16 @@ $ic('li:last-child').siblingsPrevAll()
 ```javascript
 $ic('li:last-child').siblingsNextAll()
 ```
+
+> filter (expr) // 过滤已经查询到的元素
+```javascript
+$ic('li').filter('.active')
+```
+
+> addClass(className) removeClass(className) toggleClass(className) replaceClass(removeClassName, addClassName)
+```javascript
+$ic('li').toggleClass('active')
+$ic('li').removeClass('active')
+$ic('li').toggleClass('active')
+$ic('li').replaceClass('active', 'active2')
+```
