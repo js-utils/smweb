@@ -9,15 +9,21 @@
     <script src="../build/icQuery2.js"></script>
 </head>
 <body>
-    <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-    </ul>
-    <script>
-        $ic(function () {
-            console.log('loaded')
-        })
-    </script>
+<ul class="ul1">
+    <li>1</li>
+    <li class="active">2</li>
+    <li>3</li>
+</ul>
+<ul class="ul2">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+<script>
+  $ic(function () {
+    console.log('DOMContentLoaded', $ic)
+    console.log($ic('body').findOne('li').sibling('.active'))
+  })
+</script>
 </body>
 </html>

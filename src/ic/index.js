@@ -7,9 +7,9 @@ function ic (expr) {
     }
     // 页面加载完成执行函数
     if (window.addEventListener) {
-      window.addEventListener('load', afterPageLoaded, false)
+      window.addEventListener('DOMContentLoaded', afterPageLoaded, false)
     } else if (window.attachEvent) {
-      window.attachEvent('onload', afterPageLoaded)
+      window.attachEvent('DOMContentLoaded', afterPageLoaded)
     } else {
       window.onload = afterPageLoaded
     }

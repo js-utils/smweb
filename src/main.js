@@ -1,6 +1,6 @@
 // 获取ic
 let ic = require('./ic/index')
-(function () {
+;(function () {
   if(!window['$ic']){
     window['$ic'] = ic
   }

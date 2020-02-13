@@ -25,28 +25,91 @@ class IcArray extends Array {
     }
     return this
   }
+  _uniq () {
+    return this.filter((value, index, self) => {
+      return self.indexOf(value) === index
+    })
+  }
   /**
    * @param expr: string
    * @returns icArray
    */
-  find (expr) {
+  find (expr = '*') {
     /* #if icNote === 'exist' */
-    this.find.icDesc = '查询所有子孙节点,默认查询所有'
+    this.find.icDesc || (this.find.icDesc = '根据expr查询所有子孙节点,默认查询所有')
     /* #endif */
-    expr = expr || '*'
+    let icArray = new IcArray()
     this.forEach((element) => {
-      this._query(expr, element)
+      icArray._query(expr, element)
     })
-    return this
+    return icArray._uniq()
   }
   findOne (expr) {
     /* #if icNote === 'exist' */
-    this.findOne.icDesc = '查询所有子孙节点中的第一个'
+    this.findOne.icDesc || (this.findOne.icDesc = '根据expr查询所有子孙节点中的第一个')
     /* #endif */
-    this.forEach(function (element) {
-      this._query(expr, element, true)
+    let icArray = new IcArray()
+    this.forEach((element) => {
+      icArray._query(expr, element, true)
     })
-    return this
+    return icArray._uniq()
+  }
+  children (expr = '*') {
+    /* #if icNote === 'exist' */
+    this.children && (this.children.icDesc = '查询所有儿子节点(不包括孙子)')
+    /* #endif */
+    let icArray = new IcArray()
+    this.forEach((element) => {
+      icArray._query(`:scope > ${expr}`, element)
+    })
+    return icArray._uniq()
+  }
+  parent (expr = undefined) {
+    /* #if icNote === 'exist' */
+    this.parent.icDesc || (this.parent.icDesc = '获取直接父亲节点(亲生父亲)，传递expr表示查找某种类型的直接父亲节点')
+    /* #endif */
+    let icArray = new IcArray()
+    this.forEach((element) => {
+      let parent = element.parentNode
+      // nodeType: http://www.w3school.com.cn/jsref/prop_node_nodetype.asp
+      if (parent && parent.nodeType === 1) {
+        if (!expr) {
+          icArray.push(parent)
+        } else {
+          let exprElements = new IcArray()._query(expr)
+          if (exprElements.indexOf(parent) !== -1) {
+            icArray.push(parent)
+          }
+        }
+      }
+    })
+    return icArray._uniq()
+  }
+  parents (expr = undefined) {
+    /* #if icNote === 'exist' */
+    this.parents.icDesc || (this.parents.icDesc = '获取所有祖先(父亲，爷爷..)，传递expr表示查找某种类型的祖先节点')
+    /* #endif */
+    let nowParentsElements = this.parent()
+    let totalParentElements = nowParentsElements
+    while (nowParentsElements.length) {
+      nowParentsElements = nowParentsElements.parent()
+      Array.prototype.push.apply(totalParentElements, nowParentsElements)
+    }
+    if (expr) {
+      let exprElements = new IcArray()._query(expr)
+      let icArray = new IcArray()
+      exprElements.forEach((item) => {
+        if (totalParentElements.indexOf(item) !== -1) {
+          icArray.push(item)
+        }
+      })
+      totalParentElements = icArray
+    }
+    return totalParentElements._uniq()
+  }
+  // 获取兄弟节点
+  sibling (expr = undefined) {
+    return this.parent().children(expr)._uniq()
   }
 }
 module.exports = IcArray
