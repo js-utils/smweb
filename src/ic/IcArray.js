@@ -108,8 +108,42 @@ class IcArray extends Array {
     return totalParentElements._uniq()
   }
   // 获取兄弟节点
-  sibling (expr = undefined) {
-    return this.parent().children(expr)._uniq()
+  siblings (expr = '*') {
+    let icArray = new IcArray()
+    this.forEach(element => {
+      Array.prototype.push.apply(icArray, new IcArray(element).parent().children(expr))
+    })
+    return icArray._uniq()
+  }
+  // 获取向下的兄弟节点
+  siblingsNextAll(expr = '*') {
+    let icArray = new IcArray()
+    this.forEach(element => {
+      let elementSiblings = new IcArray(element).siblings(expr)
+      let nextElement = element['nextSibling']
+      while (nextElement) {
+        if (nextElement.nodeType === 1 && elementSiblings.indexOf(nextElement) !== -1) {
+          icArray.push(nextElement)
+        }
+        nextElement = nextElement['nextSibling']
+      }
+    })
+    return icArray._uniq()
+  }
+  // 获取向上的兄弟节点
+  siblingsPrevAll (expr = '*') {
+    let icArray = new IcArray()
+    this.forEach(element => {
+      let elementSiblings = new IcArray(element).siblings(expr)
+      let prevElement = element['previousSibling']
+      while (prevElement) {
+        if (prevElement.nodeType === 1 && elementSiblings.indexOf(prevElement) !== -1) {
+          icArray.push(prevElement)
+        }
+        prevElement = prevElement['previousSibling']
+      }
+    })
+    return icArray._uniq()
   }
 }
 module.exports = IcArray

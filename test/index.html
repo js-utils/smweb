@@ -22,7 +22,7 @@
 <script>
   $ic(function () {
     console.log('DOMContentLoaded', $ic)
-    console.log($ic('body').findOne('li').sibling('.active'))
+    console.log($ic('li:last-child').siblingsPrevAll())
   })
 </script>
 </body>
