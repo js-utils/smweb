@@ -65,3 +65,9 @@ $ic('li').removeClass('active')
 $ic('li').toggleClass('active')
 $ic('li').replaceClass('active', 'active2')
 ```
+
+> addVisibleClass (visibleClassName, offsetTop = 0) // 检测元素在视口是否可见
+```javascript
+// 当li元素在视图可见后，添加类 had-visible
+$ic('li').addVisibleClass('had-visible')
+```

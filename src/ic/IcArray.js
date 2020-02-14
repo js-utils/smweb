@@ -199,10 +199,28 @@ class IcArray extends Array {
   // 替换类
   replaceClass (beforeClassName, afterClassName) {
     let icArray = this.filter(`.${beforeClassName}`)
-    console.log(this, icArray, `.${beforeClassName}`)
     icArray._operateClass('remove', beforeClassName)
     icArray._operateClass('add', afterClassName)
     return icArray
+  }
+  // watchVisible class offset: 元素离视口的距离多少认为可见，比如：-10 -> 元素离视口顶部-10px, 即元素和窗口顶部重叠后，再向上多移动10px才认为可见
+  addVisibleClass (visibleClassName, offsetTop = 0) {
+    let that = this
+    window.addEventListener('scroll', function onScroll () {
+      that.forEach(element => {
+        // getBoundingClientRect用于获取某个元素相对于视窗的位置集合。集合中有top, right, bottom, left等属性。
+        let elementRectObject = element.getBoundingClientRect()
+        // 元素top小于0 代表已经跑到视口上方
+        if (elementRectObject.top < offsetTop && !element.classList.contains(visibleClassName)) {
+          element.classList.add(visibleClassName)
+        }
+      })
+      // 全部可见后，移除滚动监听
+      if (that.filter(item => item.classList.contains(visibleClassName)).length === that.length) {
+        window.removeEventListener('scroll', onScroll)
+      }
+    })
+    return this
   }
 }
 module.exports = IcArray
