@@ -58,6 +58,15 @@ $ic('li').filter('.active')
 > first() // 第一个元素
 > last() // 最后一个元素
 
+
+### 事件
+
+> on (event, listener, useCapture = false) // 绑定事件
+> off (event, listener, useCapture = false) // 解绑事件
+> one (event, listener, useCapture= false) // 绑定的事件只执行一次
+
+### 类
+
 > addClass(className) removeClass(className) toggleClass(className) replaceClass(removeClassName, addClassName)
 ```javascript
 $ic('li').toggleClass('active')

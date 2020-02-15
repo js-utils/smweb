@@ -30,7 +30,9 @@
 <script>
   $ic(function () {
     console.log('DOMContentLoaded')
-    $ic('li').inViewportAddClass('had-visible')
+    $ic('li').one('click', function (event) {
+      console.log(event)
+    })
   })
 </script>
 </body>

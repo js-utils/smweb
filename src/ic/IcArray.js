@@ -172,6 +172,41 @@ class IcArray extends Array {
     }
     return this
   }
+  // 删除元素
+  ////////////////////////////////////////////////////////////////////
+  //    事件操作相关
+  ////////////////////////////////////////////////////////////////////
+  on (event, listener, useCapture = false) {
+    this.forEach(element => {
+      if(element.addEventListener) {
+        element.addEventListener(event, listener, useCapture)
+      } else if (element['attachEvent']) {
+        element['attachEvent'](`on${event}`, listener)
+      }else{
+        element[`on${event}`] = listener
+      }
+    })
+    return this
+  }
+  off (event, listener, useCapture = false) {
+    this.forEach(element => {
+      if( element.removeEventListener ){
+        element.removeEventListener(event, listener, useCapture)
+      } else if (element['detachEvent']) {
+        element['detachEvent'](`on${event}`, listener)
+      }else {
+        element[`on${event}`] = null
+      }
+    })
+    return this
+  }
+  one (event, listener, useCapture= false) {
+    this.on(event, function oneFunc (e) {
+      listener(...arguments)
+      new IcArray(e.target).off(event, oneFunc, useCapture)
+    }, useCapture)
+    return this
+  }
   ////////////////////////////////////////////////////////////////////
   //    类操作相关
   ////////////////////////////////////////////////////////////////////
