@@ -90,6 +90,18 @@ $ic('li').inViewportAddClass('had-visible') // li元素滚动到视口内时候 
 ```javascript
 $ic('li').css() // 获取查询到的节点内的第一个元素的所有样式
 $ic('li').css('width') // 获取查询到的节点内的第一个元素的宽度
-$ic('li').css('width', '100px') // 获取查询到的节点内的第一个元素的宽度
+$ic('li').css('width', '100px') // 设置所有查询到的节点的width为100px
+```
 
+> attr (attribute, value) //获取或设置dom属性
+```javascript
+$ic('li').attr('width') // 获取查询到的节点内的第一个元素的宽度属性
+$ic('li').attr('width', '100px') // 设置查询到的所有li，添加属性width为100px
+```
+
+> dataset (name, value) //获取或设置data-*类型的数据
+```javascript
+$ic('li').dataset() // 获取查询到的节点内的第一个元素的dataset
+$ic('li').css('width') // 获取查询到的节点内的第一个元素的dataset中width的值
+$ic('li').css('width', '100px') // 设置所有查询到的节点的dataset中的width为100px（data-width="100px"）
 ```

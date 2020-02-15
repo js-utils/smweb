@@ -282,7 +282,7 @@ class IcArray extends Array {
   }
   // 获取或设置样式
   css (name, value) {
-    if (name && value) { // 样式设置
+    if (value) { // 样式设置
       this.forEach(element => {
         setStyle(element, name, value)
       })
@@ -299,7 +299,7 @@ class IcArray extends Array {
         }
       }
     }
-    return this
+    return null
     // 获得样式
     function getStyle(elem) {
       return elem['currentStyle'] || document.defaultView && document.defaultView.getComputedStyle && document.defaultView.getComputedStyle(elem, false) || elem.style
@@ -314,6 +314,31 @@ class IcArray extends Array {
         element.style["styleFloat"] = value;
       }
     }
+  }
+  // 获取或设置dom属性
+  attr (attribute, value){
+    if (value) {
+      this.forEach(function (el) {
+        el.setAttribute(attribute, value)
+      })
+      return this
+    } else if (this.length) {
+      return this[0].getAttribute(attribute)
+    }
+    return null
+  }
+  // 获取或设置dom中data-*的值
+  dataset (key, value){
+    if (value) {
+      this.forEach(function (el) {
+        el.dataset[key] = value
+      })
+      return this
+    } else if (this.length) {
+      let dataset = this[0].dataset
+      return key ? dataset[key] : dataset
+    }
+    return null
   }
 }
 module.exports = IcArray
