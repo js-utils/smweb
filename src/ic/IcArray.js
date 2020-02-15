@@ -203,20 +203,43 @@ class IcArray extends Array {
     icArray._operateClass('add', afterClassName)
     return icArray
   }
-  // watchVisible class offset: 元素离视口的距离多少认为可见，比如：-10 -> 元素离视口顶部-10px, 即元素和窗口顶部重叠后，再向上多移动10px才认为可见
-  addVisibleClass (visibleClassName, offsetTop = 0) {
+  static getViewportSize () {
+    let pageWidth = window.innerWidth
+    let pageHeight = window.innerHeight
+    if (typeof pageWidth !== 'number') {
+      if (document.compatMode === 'CSS1Compat') {  //标准模式下
+        pageWidth = document.documentElement.clientWidth
+        pageHeight = document.documentElement.clientHeight
+      } else {  //混杂模式下
+        pageWidth = document.body.clientWidth
+        pageHeight = document.body.clientHeight
+      }
+    }
+    return { width: pageWidth, height: pageHeight }
+  }
+  // 在视口可见 overlapOffset 重合度： 10 -> 重合10px认为可见
+  inViewport (overlapOffset = 0) {
+    return super.filter(element => {
+      // getBoundingClientRect用于获取某个元素相对于视窗的位置集合。集合中有top, right, bottom, left等属性。
+      let elementRectObject = element.getBoundingClientRect()
+      let viewportSize = IcArray.getViewportSize()
+      // 元素右边到视口左边的距离 >= overlapOffset 并且 元素左边到视口右边的距离 <= overlapOffset
+      let horizontalVisible = (elementRectObject.right >= overlapOffset) && (elementRectObject.left - viewportSize.width <= -1 * overlapOffset)
+      // 元素底边到视口上边的距离 >= overlapOffset 并且 元素上边到视口底边的距离 <= overlapOffset
+      let verticalVisible = (elementRectObject.bottom >= overlapOffset) && (elementRectObject.top - viewportSize.height <= -1 * overlapOffset)
+      // 同时满足见及认为元素可见
+      console.log(element, elementRectObject, viewportSize, horizontalVisible, verticalVisible)
+      return horizontalVisible && verticalVisible
+    })
+  }
+  // watchVisible: className, overlapOffset: 重合度： 10 -> 重合10px认为可见
+  inViewportAddClass (visibleClassName, overlapOffset = 0) {
     let that = this
     window.addEventListener('scroll', function onScroll () {
-      that.forEach(element => {
-        // getBoundingClientRect用于获取某个元素相对于视窗的位置集合。集合中有top, right, bottom, left等属性。
-        let elementRectObject = element.getBoundingClientRect()
-        // 元素top小于0 代表已经跑到视口上方
-        if (elementRectObject.top < offsetTop && !element.classList.contains(visibleClassName)) {
-          element.classList.add(visibleClassName)
-        }
-      })
+      let inViewportIcArray = that.inViewport(overlapOffset)
+      inViewportIcArray.addClass(visibleClassName)
       // 全部可见后，移除滚动监听
-      if (that.filter(item => item.classList.contains(visibleClassName)).length === that.length) {
+      if (Array.prototype.filter.call(that, item => item.classList.contains(visibleClassName)).length === that.length) {
         window.removeEventListener('scroll', onScroll)
       }
     })

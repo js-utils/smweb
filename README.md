@@ -66,8 +66,13 @@ $ic('li').toggleClass('active')
 $ic('li').replaceClass('active', 'active2')
 ```
 
-> addVisibleClass (visibleClassName, offsetTop = 0) // 检测元素在视口是否可见
+> inViewport (overlapOffset = 0) // 查询视口中的dom（视口内的元素）
+```javascript
+$ic('li').inViewport(10) // 所有li元素中和视口重合超过10px的元素
+```
+
+> inViewportAddClass (visibleClassName, overlapOffset = 0) // 检测元素在视口是否可见，可见是添加类visibleClassName
 ```javascript
 // 当li元素在视图可见后，添加类 had-visible
-$ic('li').addVisibleClass('had-visible')
+$ic('li').inViewportAddClass('had-visible') // li元素滚动到视口内时候 添加had-visible类
 ```
