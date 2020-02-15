@@ -1,3 +1,12 @@
+# Install
+
+```bash
+npm install icquery2
+```
+
+
+# Usage
+
 ### dom查询
 > $ic() // 获取节点，库所有dom方法都是根据$ic获取到dom节点后进行的
 ```javascript

@@ -5,4 +5,7 @@ let ic = require('./ic/index')
     window['$ic'] = ic
   }
   window['$ic'] = ic
+  if (!window['$']) {
+    window['$'] = ic
+  }
 })()

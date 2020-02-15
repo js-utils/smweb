@@ -149,6 +149,10 @@ class IcArray extends Array {
   // 过滤已选元素
   filter (expr) {
     if (expr) {
+      // 如果传的是function则认为是调用Array的原生过滤方法
+      if (typeof expr === 'function') {
+        return super.filter(...arguments)
+      }
       let icArray = new IcArray()
       this.forEach(element => {
         let exprElementSiblings = new IcArray(element).siblings(expr)
@@ -269,15 +273,25 @@ class IcArray extends Array {
   }
   // watchVisible: className, overlapOffset: 重合度： 10 -> 重合10px认为可见
   inViewportAddClass (visibleClassName, overlapOffset = 0) {
-    let that = this
-    window.addEventListener('scroll', function onScroll () {
-      let inViewportIcArray = that.inViewport(overlapOffset)
+    let parentsOverflowAutoIcArray = this.parents().filter(element => {
+      return /auto/.test(new IcArray(element).css('overflow'))
+    })
+    let onScroll = () => {
+      let inViewportIcArray = this.inViewport(overlapOffset)
       inViewportIcArray.addClass(visibleClassName)
       // 全部可见后，移除滚动监听
-      if (Array.prototype.filter.call(that, item => item.classList.contains(visibleClassName)).length === that.length) {
-        window.removeEventListener('scroll', onScroll)
+      if (this.filter(item => item.classList.contains(visibleClassName)).length === this.length) {
+        console.log('remove')
+        parentsOverflowAutoIcArray.forEach(element => {
+          element.removeEventListener('scroll', onScroll)
+        })
       }
+    }
+    parentsOverflowAutoIcArray.forEach(element => {
+      element.addEventListener('scroll', onScroll)
     })
+    // 默认立即检测一次在视图的dom
+    onScroll()
     return this
   }
   // 获取或设置样式

@@ -8,6 +8,15 @@
     <title>Document</title>
     <script src="../build/icQuery2.js"></script>
     <style>
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+        .main {
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
         li {
             line-height: 500px;
         }
@@ -17,21 +26,22 @@
     </style>
 </head>
 <body>
-<ul class="ul1">
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-</ul>
-<ul class="ul2">
-    <li>1</li>
-    <li class="active">2</li>
-    <li>3</li>
-</ul>
+<div class="main">
+    <ul class="ul1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <ul class="ul2">
+        <li>1</li>
+        <li class="active">2</li>
+        <li>3</li>
+    </ul>
+</div>
 <script>
   $ic(function () {
     console.log('DOMContentLoaded')
-    console.log($ic('li.active').attr('width', '111'))
-    console.log($ic('li.active').attr('width'))
+    $ic('li').inViewportAddClass('hello')
   })
 </script>
 </body>
