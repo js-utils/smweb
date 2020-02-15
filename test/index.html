@@ -30,9 +30,7 @@
 <script>
   $ic(function () {
     console.log('DOMContentLoaded')
-    $ic('li').one('click', function (event) {
-      console.log(event)
-    })
+    console.log($ic('li.active').css('width'))
   })
 </script>
 </body>

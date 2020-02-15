@@ -85,3 +85,11 @@ $ic('li').inViewport(10) // 所有li元素中和视口重合超过10px的元素
 // 当li元素在视图可见后，添加类 had-visible
 $ic('li').inViewportAddClass('had-visible') // li元素滚动到视口内时候 添加had-visible类
 ```
+
+> css (name, value) //获取或设置dom样式
+```javascript
+$ic('li').css() // 获取查询到的节点内的第一个元素的所有样式
+$ic('li').css('width') // 获取查询到的节点内的第一个元素的宽度
+$ic('li').css('width', '100px') // 获取查询到的节点内的第一个元素的宽度
+
+```

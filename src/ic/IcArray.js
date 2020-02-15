@@ -280,5 +280,40 @@ class IcArray extends Array {
     })
     return this
   }
+  // 获取或设置样式
+  css (name, value) {
+    if (name && value) { // 样式设置
+      this.forEach(element => {
+        setStyle(element, name, value)
+      })
+      return this
+    } else { // 样式读取
+      if (this.length) {
+        let computedStyle = getStyle(this[0])
+        if (name === 'float') {
+          return computedStyle['cssFloat'] || computedStyle['styleFloat']
+        } else if (name) {
+          return computedStyle[name]
+        } else {
+          return computedStyle
+        }
+      }
+    }
+    return this
+    // 获得样式
+    function getStyle(elem) {
+      return elem['currentStyle'] || document.defaultView && document.defaultView.getComputedStyle && document.defaultView.getComputedStyle(elem, false) || elem.style
+    }
+    // 设置样式
+    //element:需要设置样式的目标元素;name:样式属性;value:设置值
+    function setStyle(element, name, value) {
+      if (name != "float") {
+        element.style[name] = value;
+      } else {
+        element.style["cssFloat"] = value;
+        element.style["styleFloat"] = value;
+      }
+    }
+  }
 }
 module.exports = IcArray
