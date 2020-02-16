@@ -267,7 +267,7 @@ class IcArray extends Array {
       // 元素底边到视口上边的距离 >= overlapOffset 并且 元素上边到视口底边的距离 <= overlapOffset
       let verticalVisible = (elementRectObject.bottom >= overlapOffset) && (elementRectObject.top - viewportSize.height <= -1 * overlapOffset)
       // 同时满足见及认为元素可见
-      console.log(element, elementRectObject, viewportSize, horizontalVisible, verticalVisible)
+      // console.log(element, elementRectObject, viewportSize, horizontalVisible, verticalVisible)
       return horizontalVisible && verticalVisible
     })
   }
@@ -281,7 +281,6 @@ class IcArray extends Array {
       inViewportIcArray.addClass(visibleClassName)
       // 全部可见后，移除滚动监听
       if (this.filter(item => item.classList.contains(visibleClassName)).length === this.length) {
-        console.log('remove')
         parentsOverflowAutoIcArray.forEach(element => {
           element.removeEventListener('scroll', onScroll)
         })
