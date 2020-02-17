@@ -1,3 +1,6 @@
+### Default Mount Place
+`$ic.NativeExt.FomData`
+
 ### Single Install
 ```javascript
 let IcFomData = require('icquery2/src/NativeExt/IcFormData') 

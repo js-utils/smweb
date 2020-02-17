@@ -41,10 +41,12 @@
 <script>
   $ic(function () {
     console.log('DOMContentLoaded')
-    $ic('li').inViewportAddClass('hello')
-
-    let formData = $.NativeExt.FormData.fromJsonObject({a: 1, b: '2', c: [{c1: 1}, 2, 3], d: {d1: 1, d2: [1, 2, 3], d3: [1, {d33: [1, 2]}]}, e: [{e1: 1}, {e2: 2}]})
-    console.log(formData, formData.toJsonObject())
+    $ic.NativeExt.XMLHttpRequest.XMLProxy = {
+      onreadystatechange_before:  (xhr) => {
+        console.log(xhr)
+      }
+    }
+    window.XMLHttpRequest = $ic.NativeExt.XMLHttpRequest
   })
 </script>
 </body>

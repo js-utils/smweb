@@ -1,4 +1,6 @@
 let IcFormData = require('./IcFomData')
+let IcXMLHttpRequestProxy = require('./IcXMLHttpRequestProxy')
 module.exports = {
-  FormData: IcFormData
+  FormData: IcFormData,
+  XMLHttpRequest: IcXMLHttpRequestProxy
 }
