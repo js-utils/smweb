@@ -1,7 +1,7 @@
 {
-  "name": "icquery2",
+  "name": "smweb",
   "version": "1.0.0",
-  "description": "",
+  "description": "三木web工具集合",
   "main": "index.js",
   "scripts": {
     "build": "webpack",

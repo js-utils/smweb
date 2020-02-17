@@ -1,5 +1,5 @@
 let RealXMLHttpRequest = XMLHttpRequest
-function IcXMLHttpRequestProxy () {
+function SmXMLHttpRequestProxy () {
   let xhr = new RealXMLHttpRequest()
 
   // xhr._onreadystatechange = function () {
@@ -7,9 +7,9 @@ function IcXMLHttpRequestProxy () {
   // }
 
   xhr.onreadystatechange = function () {
-    IcXMLHttpRequestProxy._Proxy && IcXMLHttpRequestProxy._Proxy['onreadystatechange_before'] && IcXMLHttpRequestProxy._Proxy['onreadystatechange_before'].bind(xhr)(xhr, ...arguments)
+    SmXMLHttpRequestProxy._Proxy && SmXMLHttpRequestProxy._Proxy['onreadystatechange_before'] && SmXMLHttpRequestProxy._Proxy['onreadystatechange_before'].bind(xhr)(xhr, ...arguments)
     xhr['_onreadystatechange'] && xhr['_onreadystatechange'](...arguments)
-    IcXMLHttpRequestProxy._Proxy && IcXMLHttpRequestProxy._Proxy['onreadystatechange_after'] && IcXMLHttpRequestProxy._Proxy['onreadystatechange_after'].bind(xhr)(xhr, ...arguments)
+    SmXMLHttpRequestProxy._Proxy && SmXMLHttpRequestProxy._Proxy['onreadystatechange_after'] && SmXMLHttpRequestProxy._Proxy['onreadystatechange_after'].bind(xhr)(xhr, ...arguments)
   }
   return new Proxy(xhr, {
     get (target, prop) {
@@ -26,9 +26,9 @@ function IcXMLHttpRequestProxy () {
     }
   })
 }
-IcXMLHttpRequestProxy._Proxy = null
-IcXMLHttpRequestProxy.setProxy = function (config) {
-  IcXMLHttpRequestProxy._Proxy = config
+SmXMLHttpRequestProxy._Proxy = null
+SmXMLHttpRequestProxy.setProxy = function (config) {
+  SmXMLHttpRequestProxy._Proxy = config
 }
 
-module.exports = IcXMLHttpRequestProxy
+module.exports = SmXMLHttpRequestProxy

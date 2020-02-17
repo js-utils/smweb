@@ -1,6 +1,6 @@
-class IcFomData extends FormData {
+class SmFomData extends FormData {
   static fromJsonObject (jsonObj) {
-    let formData = new IcFomData()
+    let formData = new SmFomData()
     appendObject(formData, '', jsonObj)
     return formData
     function appendArray (formData, pKey, array) {
@@ -82,4 +82,4 @@ class IcFomData extends FormData {
     }
   }
 }
-module.exports = IcFomData
+module.exports = SmFomData

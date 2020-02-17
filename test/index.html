@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="../build/icQuery2.js"></script>
+    <script src="../build/smweb.js"></script>
     <style>
         html, body {
             height: 100%;
@@ -39,14 +39,14 @@
     </ul>
 </div>
 <script>
-  $ic(function () {
+  $sm(function () {
     console.log('DOMContentLoaded')
-    $ic.NativeExt.XMLHttpRequest.XMLProxy = {
+    $sm.NativeExt.XMLHttpRequest.XMLProxy = {
       onreadystatechange_before:  (xhr) => {
         console.log(xhr)
       }
     }
-    window.XMLHttpRequest = $ic.NativeExt.XMLHttpRequest
+    window.XMLHttpRequest = $sm.NativeExt.XMLHttpRequest
   })
 </script>
 </body>

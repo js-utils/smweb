@@ -1,9 +1,9 @@
-const IcArray = require('./IcArray')
-function ic (expr) {
-  let icArray = new IcArray()
+const SmArray = require('./SmArray')
+function sm (expr) {
+  let smArray = new SmArray()
   if (typeof expr === 'function') {  // 函数
     function afterPageLoaded () {
-      expr($ic)
+      expr($sm)
     }
     // 页面加载完成执行函数
     if (window.addEventListener) {
@@ -14,12 +14,12 @@ function ic (expr) {
       window.onload = afterPageLoaded
     }
   } else if (expr instanceof Element) { // dom对象
-    icArray.push(expr)
+    smArray.push(expr)
   }
   else if (typeof expr == 'string') {
-    icArray._query(expr)  // 字符串
+    smArray._query(expr)  // 字符串
   }
-  return icArray
+  return smArray
 }
 
-module.exports = ic
+module.exports = sm

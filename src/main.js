@@ -1,13 +1,13 @@
 // 获取ic
-let ic = require('./ic/index')
+let sm = require('./sm/index')
 const NativeExt = require('./NativeExt')
 ;(function () {
-  if(!window['$ic']){
-    window['$ic'] = ic
+  if(!window['$sm']){
+    window['$sm'] = sm
   }
-  ic.NativeExt = NativeExt
-  window['$ic'] = ic
+  sm.NativeExt = NativeExt
+  window['$sm'] = sm
   if (!window['$']) {
-    window['$'] = ic
+    window['$'] = sm
   }
 })()
