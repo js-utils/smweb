@@ -82,4 +82,4 @@ class SmFomData extends FormData {
     }
   }
 }
-module.exports = SmFomData
+export default SmFomData

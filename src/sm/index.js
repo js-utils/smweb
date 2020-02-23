@@ -1,4 +1,4 @@
-const SmArray = require('./SmArray')
+import SmArray from "./SmArray";
 function sm (expr) {
   let smArray = new SmArray()
   if (typeof expr === 'function') {  // 函数
@@ -22,4 +22,4 @@ function sm (expr) {
   return smArray
 }
 
-module.exports = sm
+export default sm

@@ -31,4 +31,4 @@ SmXMLHttpRequestProxy.setProxy = function (config) {
   SmXMLHttpRequestProxy._Proxy = config
 }
 
-module.exports = SmXMLHttpRequestProxy
+export default SmXMLHttpRequestProxy

@@ -354,4 +354,4 @@ class SmArray extends Array {
     return null
   }
 }
-module.exports = SmArray
+export default SmArray

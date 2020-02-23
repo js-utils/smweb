@@ -1,6 +1,7 @@
 // 获取ic
-let sm = require('./sm/index')
-const NativeExt = require('./NativeExt')
+import sm from './sm/index'
+import NativeExt from './NativeExt'
+
 ;(function () {
   if(!window['$sm']){
     window['$sm'] = sm
