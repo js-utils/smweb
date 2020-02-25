@@ -7,6 +7,10 @@ npm install smweb
 
 # Usage
 
+### $sm绑定的方法
+> dynamicLoadCss(url) 动态加载css
+> dynamicLoadJs(url) 动态加载js
+
 ### dom查询
 > $sm() // 获取节点，库所有dom方法都是根据$ic获取到dom节点后进行的
 ```javascript

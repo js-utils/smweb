@@ -21,5 +21,30 @@ function sm (expr) {
   }
   return smArray
 }
+// 动态加载CSS
+sm.dynamicLoadCss = function (url) {
+  let head = document.getElementsByTagName('head')[0]
+  let link = document.createElement('link')
+  link.type = 'text/css'
+  link.rel = 'stylesheet'
+  link.href = url
+  head.appendChild(link)
+}
+// 动态加载JS
+sm.dynamicLoadJs = function (url, callback) {
+  let head = document.getElementsByTagName('head')[0];
+  let script = document.createElement('script')
+  script.type = 'text/javascript'
+  script.src = url
+  if (typeof(callback)=='function') {
+    script.onload = script.onreadystatechange = function () {
+      if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete"){
+        callback()
+        script.onload = script.onreadystatechange = null
+      }
+    }
+  }
+  head.appendChild(script);
+}
 
 export default sm

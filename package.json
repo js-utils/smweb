@@ -1,6 +1,6 @@
 {
   "name": "smweb",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "三木web工具集合",
   "main": "build/smweb.js",
   "scripts": {
