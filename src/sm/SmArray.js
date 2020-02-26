@@ -170,11 +170,17 @@ class SmArray extends Array {
     }
     return this
   }
+  firstElement () {
+    return this.length ? this[0] : null
+  }
   last () {
     if (this.length) {
       return new SmArray(this[this.length - 1])
     }
     return this
+  }
+  lastElement () {
+    return this.length ? this[this.length - 1] : null
   }
   // 删除元素
   ////////////////////////////////////////////////////////////////////
@@ -209,6 +215,13 @@ class SmArray extends Array {
       listener(...arguments)
       new SmArray(e.target).off(event, oneFunc, useCapture)
     }, useCapture)
+    return this
+  }
+  trigger (event) {
+    let myEvent = new Event(event)
+    this.forEach(element => {
+      element.dispatchEvent(myEvent)
+    })
     return this
   }
   ////////////////////////////////////////////////////////////////////

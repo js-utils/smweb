@@ -68,8 +68,10 @@ $sm('li:last-child').siblingsNextAll()
 $sm('li').filter('.active')
 ```
 
-> first() // 第一个元素
-> last() // 最后一个元素
+> first() // 取第一个元素SmArray
+> firstElement // 第一个dom元素，不存在返回null
+> last() // 最后一个元素的SmArray
+> lastElement() // 最后一个dom元素，不存在返回null
 
 
 ### 事件
@@ -77,6 +79,7 @@ $sm('li').filter('.active')
 > on (event, listener, useCapture = false) // 绑定事件
 > off (event, listener, useCapture = false) // 解绑事件
 > one (event, listener, useCapture= false) // 绑定的事件只执行一次
+> trigger (event) // 触发事件
 
 ### 类
 
