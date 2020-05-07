@@ -121,3 +121,12 @@ $sm('li').dataset() // 获取查询到的节点内的第一个元素的dataset
 $sm('li').css('width') // 获取查询到的节点内的第一个元素的dataset中width的值
 $sm('li').css('width', '100px') // 设置所有查询到的节点的dataset中的width为100px（data-width="100px"）
 ```
+
+### libs
+ > 获取网络图片尺寸 `fetchImageNetSize`
+```javascript
+async function test () {
+  let size = await $sm.libs.fetchImageNetSize("http://wise-job.oss-cn-zhangjiakou.aliyuncs.com/webjs/images/chunyun/dongcidaci.gif")
+  console.log(size) // {width: 658, height: 494}  或 无法获取到抛异常
+}
+```

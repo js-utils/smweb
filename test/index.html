@@ -39,7 +39,7 @@
     </ul>
 </div>
 <script>
-  $sm(function () {
+  $sm(async function () {
     console.log('DOMContentLoaded')
     $sm.NativeExt.XMLHttpRequest.XMLProxy = {
       onreadystatechange_before:  (xhr) => {
@@ -47,6 +47,9 @@
       }
     }
     window.XMLHttpRequest = $sm.NativeExt.XMLHttpRequest
+    
+    let size = await $sm.libs.fetchImageNetSize("http://wise-job.oss-cn-zhangjiakou.aliyuncs.com/webjs/images/chunyun/dongcidaci.gif")
+    console.log(size)
   })
 </script>
 </body>
