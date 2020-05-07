@@ -1,5 +1,7 @@
 # Install
 
+![](https://img.shields.io/npm/v/smweb.svg?style=flat-square)
+
 ```bash
 npm install smweb
 ```
@@ -123,7 +125,7 @@ $sm('li').css('width', '100px') // 设置所有查询到的节点的dataset中�
 ```
 
 ### libs
- > 获取网络图片尺寸 `fetchImageNetSize`
+ > 获取网络图片尺寸 `fetchImageNetSize`[内部网络请求库使用`fetch`，请自己polyfill]
 ```javascript
 async function test () {
   let size = await $sm.libs.fetchImageNetSize("http://wise-job.oss-cn-zhangjiakou.aliyuncs.com/webjs/images/chunyun/dongcidaci.gif")
