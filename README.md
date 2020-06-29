@@ -120,15 +120,20 @@ $sm('li').attr('width', '100px') // 设置查询到的所有li，添加属性wid
 > dataset (name, value) //获取或设置data-*类型的数据
 ```javascript
 $sm('li').dataset() // 获取查询到的节点内的第一个元素的dataset
-$sm('li').css('width') // 获取查询到的节点内的第一个元素的dataset中width的值
-$sm('li').css('width', '100px') // 设置所有查询到的节点的dataset中的width为100px（data-width="100px"）
+$sm('li').dataset('width') // 获取查询到的节点内的第一个元素的dataset中width的值
+$sm('li').dataset('width', '100px') // 设置所有查询到的节点的dataset中的width为100px（data-width="100px"）
 ```
 
 ### libs
- > 获取网络图片尺寸 `fetchImageNetSize`[内部网络请求库使用`fetch`，请自己polyfill]
+ > 获取网络图片尺寸 `fetchImageNetSize`[内部网络请求库使用`fetch`，请自己polyfill] or use https://github.com/developit/unfetch
 ```javascript
 async function test () {
   let size = await $sm.libs.fetchImageNetSize("http://wise-job.oss-cn-zhangjiakou.aliyuncs.com/webjs/images/chunyun/dongcidaci.gif")
   console.log(size) // {width: 658, height: 494}  或 无法获取到抛异常
 }
 ```
+
+### NativeExt
+
+> SmFormData // FormData和JSON之间相互转换
+> SmXMLHttpRequestProxy // 用于XMLHttpRequest的hook
