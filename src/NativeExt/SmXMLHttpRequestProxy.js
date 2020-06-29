@@ -1,3 +1,4 @@
+// same https://github.com/wendux/Ajax-hook
 let RealXMLHttpRequest = XMLHttpRequest
 function SmXMLHttpRequestProxy () {
   let xhr = new RealXMLHttpRequest()
@@ -5,7 +6,6 @@ function SmXMLHttpRequestProxy () {
   // xhr._onreadystatechange = function () {
   //   console.log('native', xhr)
   // }
-
   xhr.onreadystatechange = function () {
     SmXMLHttpRequestProxy._Proxy && SmXMLHttpRequestProxy._Proxy['onreadystatechange_before'] && SmXMLHttpRequestProxy._Proxy['onreadystatechange_before'].bind(xhr)(xhr, ...arguments)
     xhr['_onreadystatechange'] && xhr['_onreadystatechange'](...arguments)

@@ -37,7 +37,7 @@ class SmArray extends Array {
    */
   find (expr = '*') {
     /* #if smNote === 'exist' */
-    this.find.smDesc || (this.find.smDesc = '根据expr查询所有子孙节点,默认查询所有')
+    // this.find.smDesc || (this.find.smDesc = '根据expr查询所有子孙节点,默认查询所有')
     /* #endif */
     let smArray = new SmArray()
     this.forEach((element) => {
@@ -47,7 +47,7 @@ class SmArray extends Array {
   }
   findOne (expr) {
     /* #if smNote === 'exist' */
-    this.findOne.smDesc || (this.findOne.smDesc = '根据expr查询所有子孙节点中的第一个')
+    // this.findOne.smDesc || (this.findOne.smDesc = '根据expr查询所有子孙节点中的第一个')
     /* #endif */
     let smArray = new SmArray()
     this.forEach((element) => {
@@ -57,7 +57,7 @@ class SmArray extends Array {
   }
   children (expr = '*') {
     /* #if smNote === 'exist' */
-    this.children && (this.children.smDesc = '查询所有儿子节点(不包括孙子)')
+    // this.children && (this.children.smDesc = '查询所有儿子节点(不包括孙子)')
     /* #endif */
     let smArray = new SmArray()
     this.forEach((element) => {
@@ -67,7 +67,7 @@ class SmArray extends Array {
   }
   parent (expr = undefined) {
     /* #if smNote === 'exist' */
-    this.parent.smDesc || (this.parent.smDesc = '获取直接父亲节点(亲生父亲)，传递expr表示查找某种类型的直接父亲节点')
+    // this.parent.smDesc || (this.parent.smDesc = '获取直接父亲节点(亲生父亲)，传递expr表示查找某种类型的直接父亲节点')
     /* #endif */
     let smArray = new SmArray()
     this.forEach((element) => {
@@ -88,7 +88,7 @@ class SmArray extends Array {
   }
   parents (expr = undefined) {
     /* #if smNote === 'exist' */
-    this.parents.smDesc || (this.parents.smDesc = '获取所有祖先(父亲，爷爷..)，传递expr表示查找某种类型的祖先节点')
+    // this.parents.smDesc || (this.parents.smDesc = '获取所有祖先(父亲，爷爷..)，传递expr表示查找某种类型的祖先节点')
     /* #endif */
     let nowParentsElements = this.parent()
     let totalParentElements = nowParentsElements
