@@ -3,7 +3,7 @@
 ![](https://img.shields.io/npm/v/smweb.svg?style=flat-square)
 
 ```bash
-npm install smweb
+npm install smweb -S
 ```
 
 
@@ -93,7 +93,7 @@ $sm('li').toggleClass('active')
 $sm('li').replaceClass('active', 'active2')
 ```
 
-> inViewport (overlapOffset = 0) // 查询视口中的dom（视口内的元素）
+> inViewport (overlapOffset = 0) -> bool // 查询视口中的dom（视口内的元素）
 ```javascript
 $sm('li').inViewport(10) // 所有li元素中和视口重合超过10px的元素
 ```

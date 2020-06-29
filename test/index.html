@@ -1,55 +1,47 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="../build/smweb.js"></script>
-    <style>
-        html, body {
-            height: 100%;
-            overflow: hidden;
-        }
-        .main {
-            height: 100%;
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
-        li {
-            line-height: 500px;
-        }
-        li.active {
-            background: #f00;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../build/smweb.js"></script>
+  <style>
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+    .main {
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    li {
+      line-height: 500px;
+    }
+    li.active {
+      background: #f00;
+    }
+  </style>
 </head>
 <body>
 <div class="main">
-    <ul class="ul1">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-    </ul>
-    <ul class="ul2">
-        <li>1</li>
-        <li class="active">2</li>
-        <li>3</li>
-    </ul>
+  <ul class="ul1">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+  <ul class="ul2">
+    <li>1</li>
+    <li class="active">2</li>
+    <li>3</li>
+  </ul>
 </div>
 <script>
-  $sm(async function () {
+  $sm(function () {
     console.log('DOMContentLoaded')
-    $sm.NativeExt.XMLHttpRequest.XMLProxy = {
-      onreadystatechange_before:  (xhr) => {
-        console.log(xhr)
-      }
-    }
-    window.XMLHttpRequest = $sm.NativeExt.XMLHttpRequest
-    
-    let size = await $sm.libs.fetchImageNetSize("http://wise-job.oss-cn-zhangjiakou.aliyuncs.com/webjs/images/chunyun/dongcidaci.gif")
-    console.log(size)
+    $sm('li').inViewportAddClass('hello')
   })
 </script>
 </body>

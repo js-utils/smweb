@@ -286,22 +286,25 @@ class SmArray extends Array {
   }
   // watchVisible: className, overlapOffset: 重合度： 10 -> 重合10px认为可见
   inViewportAddClass (visibleClassName, overlapOffset = 0) {
-    let parentsOverflowAutoSmArray = this.parents().filter(element => {
-      return /auto/.test(new SmArray(element).css('overflow'))
-    })
+    // let parentsOverflowAutoSmArray = this.parents().filter(element => {
+    //   return /auto/.test(new SmArray(element).css('overflow'))
+    // })
     let onScroll = () => {
       let inViewportSmArray = this.inViewport(overlapOffset)
       inViewportSmArray.addClass(visibleClassName)
       // 全部可见后，移除滚动监听
       if (this.filter(item => item.classList.contains(visibleClassName)).length === this.length) {
-        parentsOverflowAutoSmArray.forEach(element => {
-          element.removeEventListener('scroll', onScroll)
-        })
+        // parentsOverflowAutoSmArray.forEach(element => {
+        //   element.removeEventListener('scroll', onScroll)
+        // })
+        document.removeEventListener('scroll', onscroll, true)
       }
     }
-    parentsOverflowAutoSmArray.forEach(element => {
-      element.addEventListener('scroll', onScroll)
-    })
+    // parentsOverflowAutoSmArray.forEach(element => {
+    //   element.addEventListener('scroll', onScroll)
+    // })
+    // capture: true 必须，可以监听到内部所有元素的滚动
+    document.addEventListener('scroll', onScroll, true)
     // 默认立即检测一次在视图的dom
     onScroll()
     return this
