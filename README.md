@@ -71,7 +71,7 @@ $sm('li').filter('.active')
 ```
 
 > first() // 取第一个元素SmArray
-> firstElement // 第一个dom元素，不存在返回null
+> firstElement() // 第一个dom元素，不存在返回null
 > last() // 最后一个元素的SmArray
 > lastElement() // 最后一个dom元素，不存在返回null
 

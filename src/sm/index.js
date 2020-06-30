@@ -1,15 +1,15 @@
 import SmArray from "./SmArray";
 function sm (expr) {
   let smArray = new SmArray()
+  function afterPageLoaded () {
+    expr($sm)
+  }
   if (typeof expr === 'function') {  // 函数
-    function afterPageLoaded () {
-      expr($sm)
-    }
     // 页面加载完成执行函数
     if (window.addEventListener) {
       window.addEventListener('DOMContentLoaded', afterPageLoaded, false)
-    } else if (window.attachEvent) {
-      window.attachEvent('DOMContentLoaded', afterPageLoaded)
+    } else if (window['attachEvent']) {
+      window['attachEvent']('DOMContentLoaded', afterPageLoaded)
     } else {
       window.onload = afterPageLoaded
     }

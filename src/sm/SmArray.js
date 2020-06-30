@@ -1,4 +1,7 @@
 class SmArray extends Array {
+  // constructor() {
+  //   super(...arguments)
+  // }
   /**
    * 查找元素节点 $sm(expr)
    * $sm('#myId')  $sm('.myClass') $sm('div')
@@ -218,7 +221,7 @@ class SmArray extends Array {
     return this
   }
   trigger (event) {
-    let myEvent = new Event(event)
+    let myEvent = event instanceof Event ? event : new Event(event)
     this.forEach(element => {
       element.dispatchEvent(myEvent)
     })
