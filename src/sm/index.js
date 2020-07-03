@@ -41,7 +41,12 @@ sm.dynamicLoadJs = function (url, callback) {
       if (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete'){
         callback()
         script.onload = script.onreadystatechange = null
+      } else {
+        callback(new Error('error'))
       }
+    }
+    script.onerror = function () {
+      callback(new Error('error'))
     }
   }
   head.appendChild(script);
